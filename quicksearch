@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickSearch</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: #f0f2f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .logo {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            background: linear-gradient(90deg, #2196F3, #4CAF50);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .search-container {
+            width: 100%;
+            max-width: 600px;
+            position: relative;
+        }
+        #search-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            font-size: 16px;
+            outline: none;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        #search-btn {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: #2196F3;
+            cursor: pointer;
+        }
+        .footer {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo">QuickSearch</div>
+    <div class="search-container">
+        <input type="text" id="search-input" placeholder="Search the web quickly...">
+        <button id="search-btn">🔍</button>
+    </div>
+    <div class="footer">QuickSearch • Made for your browser</div>
+
+    <script>
+        // Get elements
+        const searchInput = document.getElementById('search-input');
+        const searchBtn = document.getElementById('search-btn');
+
+        // Define your default search engine (customize this URL!)
+        // Example: Google Search (replace with Bing, DuckDuckGo, etc.)
+        const SEARCH_ENGINE_URL = 'https://www.google.com/search?q=';
+
+        // Search function
+        function performSearch() {
+            const query = searchInput.value.trim();
+            if (query) {
+                const encodedQuery = encodeURIComponent(query);
+                window.location.href = SEARCH_ENGINE_URL + encodedQuery;
+            }
+        }
+
+        // Add event listeners
+        searchBtn.addEventListener('click', performSearch);
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') performSearch();
+        });
+    </script>
+</body>
+</html>
